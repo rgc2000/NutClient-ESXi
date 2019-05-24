@@ -70,7 +70,7 @@ $(ARCHIVE): $(VIBNAME)
 	tar -cf - readme.txt upsmon-install.sh upsmon-remove.sh upsmon-update.sh $(VIBNAME) | gzip -9 > $(ARCHIVE)
 
 archive:
-	git archive --format=tar.gz -9 --prefix=NutClient-ESXi-$(VERSION)-src/ $(VERSION) > NutClient-ESXi-$(VERSION)-src.tar.gz
+	git archive --format=tar --prefix=NutClient-ESXi-$(VERSION)-src/ $(VERSION) | gzip -9 > NutClient-ESXi-$(VERSION)-src.tar.gz
 
 clean:
 	rm -rf nut-bin nut-$(NUT_VERSION)
