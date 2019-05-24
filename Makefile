@@ -19,7 +19,7 @@ libressl-$(LIBRESSL_VERSION): libressl-$(LIBRESSL_VERSION).tar.gz
 	tar -xf libressl-$(LIBRESSL_VERSION).tar.gz
 
 libressl-bin: libressl-$(LIBRESSL_VERSION)
-	cd libressl-$(LIBRESSL_VERSION) ; ./configure --prefix=$(CURDIR)/libressl-bin --enable-shared=no --enable-static=yes CFLAGS="-m32" LDFLAGS="-m32"
+	cd libressl-$(LIBRESSL_VERSION) ; ./configure --prefix=$(CURDIR)/libressl-bin --enable-shared=no --enable-static=yes CFLAGS="-fPIC"
 	cd libressl-$(LIBRESSL_VERSION) ; make install
 
 nut-$(NUT_VERSION).tar.gz:
@@ -30,7 +30,7 @@ nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	patch -p0 < $(CURDIR)/patches/nut-$(NUT_VERSION)-esxi.patch
 
 nut-bin: nut-$(NUT_VERSION) libressl-bin
-	cd nut-$(NUT_VERSION); ./configure --prefix=/opt/nut --sysconfdir=/etc/ups --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-m32 -I$(CURDIR)/libressl-bin/include" LDFLAGS="-m32 -L$(CURDIR)/libressl-bin/lib -lrt"
+	cd nut-$(NUT_VERSION); ./configure --prefix=/opt/nut --sysconfdir=/etc/ups --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-I$(CURDIR)/libressl-bin/include" LDFLAGS="-L$(CURDIR)/libressl-bin/lib -lrt"
 	cd nut-$(NUT_VERSION); make DESTDIR=$(CURDIR)/nut-bin install
 
 smtptools-$(SMTPTOOLS_VERSION).tar.gz:
@@ -68,6 +68,9 @@ $(ARCHIVE): $(VIBNAME)
 	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" $(CURDIR)/data/upsmon-update.sh.template > upsmon-update.sh
 	chmod 755 upsmon-install.sh upsmon-remove.sh upsmon-update.sh
 	tar -cf - readme.txt upsmon-install.sh upsmon-remove.sh upsmon-update.sh $(VIBNAME) | gzip -9 > $(ARCHIVE)
+
+archive:
+	git archive --format=tar.gz -9 --prefix=NutClient-ESXi-$(VERSION)-src/ $(VERSION) > NutClient-ESXi-$(VERSION)-src.tar.gz
 
 clean:
 	rm -rf nut-bin nut-$(NUT_VERSION)
