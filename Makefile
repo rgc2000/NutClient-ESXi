@@ -27,7 +27,7 @@ nut-$(NUT_VERSION).tar.gz:
 
 nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	tar -xf nut-$(NUT_VERSION).tar.gz
-	patch -p0 < $(CURDIR)/patches/nut-$(NUT_VERSION)-esxi.patch
+	cd nut-$(NUT_VERSION); patch -p1 < $(CURDIR)/patches/nut-$(NUT_VERSION)-esxi.patch
 
 nut-bin: nut-$(NUT_VERSION) libressl-bin
 	cd nut-$(NUT_VERSION); ./configure --prefix=/opt/nut --sysconfdir=/etc/ups --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-I$(CURDIR)/libressl-bin/include" LDFLAGS="-L$(CURDIR)/libressl-bin/lib -lrt"
