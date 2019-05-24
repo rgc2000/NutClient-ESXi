@@ -1,0 +1,40 @@
+<vib version="5.0">
+  <type>bootbank</type>
+  <name>upsmon</name>
+  <version>@VERSION@</version>
+  <vendor>Margar</vendor>
+  <summary>Network UPS Tools client</summary>
+  <description>Network UPS Tools client for VMware ESXi 5.0-6.7</description>
+  <release-date>@TIMESTAMP@</release-date>
+  <urls>
+    <url key="kb">http://rene.margar.fr/2012/05/client-nut-pour-esxi-5-0/</url>
+  </urls>
+  <relationships>
+    <depends></depends>
+    <conflicts/>
+    <replaces/>
+    <provides/>
+    <compatibleWith/>
+  </relationships>
+  <software-tags>
+    <tag>service</tag>
+  </software-tags>
+  <system-requires>
+    <maintenance-mode>false</maintenance-mode>
+  </system-requires>
+  <file-list>
+@FILES@
+  </file-list>
+  <acceptance-level>community</acceptance-level>
+  <live-install-allowed>true</live-install-allowed>
+  <live-remove-allowed>true</live-remove-allowed>
+  <cimom-restart>false</cimom-restart>
+  <stateless-ready>true</stateless-ready>
+  <overlay>false</overlay>
+  <payloads>
+    <payload name="upsmon" type="tgz" size="@SIZE@">
+      <checksum checksum-type="sha-256">@SHA256@</checksum>
+      <checksum checksum-type="sha-1" verify-process="gunzip">@SHA1@</checksum>
+    </payload>
+  </payloads>
+</vib>

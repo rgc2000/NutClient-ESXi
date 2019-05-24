@@ -1,0 +1,4 @@
+#!/bin/sh
+
+DIRNAME="`pwd`"
+esxcli software vib install --no-sig-check -v "${DIRNAME}/upsmon-@VERSION@.x86_64.vib"

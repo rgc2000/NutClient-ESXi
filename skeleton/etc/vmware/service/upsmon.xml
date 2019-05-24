@@ -1,0 +1,13 @@
+<!-- List of services for NUT client -->
+
+<ConfigRoot>
+  <service>
+    <id>NutClient</id>
+    <initfilename>upsmon</initfilename>
+    <ruleset>NutServer</ruleset>
+    <required>false</required>
+    <packagename>upsmon</packagename>
+    <packagedescription>The Network UPS Tools client (upsmon). You need to configure advanced setting UserVars/Nut* values and restart this service each time values are modified</packagedescription>
+  </service>
+</ConfigRoot>
+

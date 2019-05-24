@@ -1,0 +1,79 @@
+#!/bin/sh
+#
+# NUT:
+#   Install/Upgrade/Remove the network UPS tools client
+#
+# description: NUT client post-install script
+#
+
+#
+# Log action
+#
+NUT_log() {
+   echo "$1"
+   logger -t NUT "$1"
+   return 0
+}
+
+add_advcfg_string() {
+   esxcfg-advcfg -q -g "/UserVars/$1" 2>/dev/null
+   if [ $? = 1 ]
+   then
+      esxcfg-advcfg -A "$1" -T string -E "$2" -F "$3" && NUT_log "Created string advcfg $1" || NUT_log "Failed to create string advcfg $1"
+   else
+      NUT_log "Using existing string advcfg $1"
+   fi
+}
+
+add_advcfg_int() {
+   esxcfg-advcfg -q -g "/UserVars/$1" 2>/dev/null
+   if [ $? = 1 ]
+   then
+      esxcfg-advcfg -A "$1" -T int -E "$2" -N "$3" -M "$4" -F "$5" && NUT_log "Created int advcfg $1" || NUT_log "Failed to create int advcfg $1"
+   else
+      NUT_log "Using existing int advcfg $1"
+   fi
+} 
+
+del_advcfg() {
+   esxcfg-advcfg -L "$1" && NUT_log "Deleted advcfg $1" || NUT_log "Failed to delete advcfg $1"
+}
+
+upsmon_install() {
+   add_advcfg_string NutUpsName 'NUT remote ups name (eg: upsname@nutserver) use space as a separator for multiple upses' upsname@nutserver
+   add_advcfg_string NutUser 'NUT username to connect to remote ups' upsuser
+   add_advcfg_string NutPassword 'NUT password to connect to remote ups' upspassword
+   add_advcfg_string NutMailTo 'NUT send mail notification to this address' root@domain
+   add_advcfg_int NutFinalDelay 'NUT seconds to wait on low battery event before shutting down' 0 3600 5
+   add_advcfg_int NutSendMail 'NUT send mail notification (1=yes 0=no)' 0 1 0
+}
+
+upsmon_remove() {
+   del_advcfg NutUpsName
+   del_advcfg NutUser
+   del_advcfg NutPassword
+   del_advcfg NutMailTo
+   del_advcfg NutFinalDelay
+   del_advcfg NutSendMail
+}
+
+if [[ "${1}" == "start" ]] && [[ "${2}" == "install" ]]
+then
+   NUT_log "Installing NUT client"
+   upsmon_install
+fi
+
+if [[ "${1}" == "start" ]] && [[ "${2}" == "upgrade" ]]
+then
+   NUT_log "Upgrading NUT client"
+   upsmon_install
+fi
+
+if [[ "${1}" == "stop" ]] && [[ "${2}" == "remove" ]]
+then
+   NUT_log "Removing NUT client"
+   upsmon_remove
+fi    
+
+exit 0
+

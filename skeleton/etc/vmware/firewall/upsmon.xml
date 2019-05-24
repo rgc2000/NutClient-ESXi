@@ -1,0 +1,20 @@
+<!-- Firewall configuration for NUT client -->
+<ConfigRoot>
+  <service>
+    <id>NutServer</id>
+    <rule id='0000'>
+      <direction>outbound</direction>
+      <protocol>tcp</protocol>
+      <porttype>dst</porttype>
+      <port>3493</port>
+    </rule>
+    <rule id='0001'>
+      <direction>outbound</direction>
+      <protocol>tcp</protocol>
+      <porttype>dst</porttype>
+      <port>25</port>
+    </rule>
+    <enabled>true</enabled>
+    <required>false</required>
+  </service>
+</ConfigRoot>

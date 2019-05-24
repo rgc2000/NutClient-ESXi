@@ -1,0 +1,3 @@
+# mail notification configuration
+SEND_MAIL="@UPS_SENDMAIL@"
+TO="@UPS_MAILTO@"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DIRNAME="`pwd`"
+/etc/init.d/upsmon stop
+esxcli software vib update --no-sig-check -v "${DIRNAME}/upsmon-@VERSION@.x86_64.vib"

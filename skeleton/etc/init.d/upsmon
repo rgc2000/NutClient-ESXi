@@ -1,0 +1,89 @@
+#!/bin/sh
+#
+# NUT:
+#   Enable/Disable the network UPS tools client
+#
+# chkconfig: off 17 30
+# description: NUT client
+#
+
+UPSMON=/opt/nut/sbin/upsmon
+UPSMON_PARAM='-u daemon'
+
+#
+# Log action
+#
+NUT_log() {
+   echo "$1"
+   logger -t NUT "$1"
+}
+
+create_config() {
+   UPS_NAME="$(esxcfg-advcfg -q -g /UserVars/NutUpsName)"
+   UPS_USER="$(esxcfg-advcfg -q -g /UserVars/NutUser)"
+   UPS_PASS="$(esxcfg-advcfg -q -g /UserVars/NutPassword)"
+   UPS_FINALDELAY="$(esxcfg-advcfg -q -g /UserVars/NutFinalDelay)"
+   UPS_SENDMAIL="$(esxcfg-advcfg -q -g /UserVars/NutSendMail)"
+   UPS_MAILTO="$(esxcfg-advcfg -q -g /UserVars/NutMailTo)"
+
+   cat /etc/ups/upsmon.conf.template > /etc/ups/upsmon.conf
+
+   for i in ${UPS_NAME}
+   do
+      echo "MONITOR ${i} 1 ${UPS_USER} ${UPS_PASS} slave" >> /etc/ups/upsmon.conf
+   done
+
+   echo "FINALDELAY ${UPS_FINALDELAY}" >> /etc/ups/upsmon.conf
+
+   sed -e "s/@UPS_SENDMAIL@/$UPS_SENDMAIL/g" \
+       -e "s/@UPS_MAILTO@/$UPS_MAILTO/g" \
+       /etc/ups/notify.conf.template > /etc/ups/notify.conf
+}
+
+start() {
+   if [ -z "$(pidof -xs "${UPSMON}")" ] ; then
+      create_config
+      ${UPSMON} ${UPSMON_PARAM}
+      NUT_log "NUT client started"
+   else
+      NUT_log "NUT client already running"
+   fi
+}
+
+stop() {
+   if [ -n "$(pidof -xs "${UPSMON}")" ] ; then
+      ${UPSMON} -c stop
+      NUT_log "NUT client stopped"
+      rm -f /etc/ups/upsmon.conf
+      rm -f /etc/ups/notify.conf
+   else
+      NUT_log "NUT client is not running"
+   fi
+}
+
+case "${1}" in
+   "start")
+      start
+   ;;
+   "stop")
+      stop
+   ;;
+   "status")
+      if [ -n "$(pidof -xs "${UPSMON}")" ] ; then
+         NUT_log "NUT client is running"
+         exit 0
+      else
+         NUT_log "NUT client is not running"
+         exit 3
+      fi
+   ;;
+   "restart")
+      stop
+      start
+   ;;
+   *)
+      echo "Usage: $(basename ${0}) {start|stop|status|restart}"
+      exit 1
+   ;;
+esac
+

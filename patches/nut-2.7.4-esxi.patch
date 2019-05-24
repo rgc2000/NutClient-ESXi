@@ -1,0 +1,13 @@
+diff -Naur nut-2.7.4/common/common.c nut-2.7.4-rgc/common/common.c
+--- nut-2.7.4/common/common.c	2015-12-29 13:08:34.000000000 +0100
++++ nut-2.7.4-rgc/common/common.c	2017-01-27 18:01:24.000000000 +0100
+@@ -178,9 +178,6 @@
+ 		if (seteuid(0))
+ 			fatal_with_errno(EXIT_FAILURE, "getuid gave 0, but seteuid(0) failed");
+ 
+-	if (initgroups(pw->pw_name, pw->pw_gid) == -1)
+-		fatal_with_errno(EXIT_FAILURE, "initgroups");
+-
+ 	if (setgid(pw->pw_gid) == -1)
+ 		fatal_with_errno(EXIT_FAILURE, "setgid");
+ 
