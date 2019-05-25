@@ -15,6 +15,7 @@ tar -cf - * | gzip -9 > "${TARDISK}"
 SHA256="$(sha256sum -b "${TARDISK}" | cut -d' ' -f1)"
 SHA1="$(gzip -dc "${TARDISK}" | sha1sum -b | cut -d' ' -f1)"
 SIZE="$(wc -c "${TARDISK}" | cut -d' ' -f1)"
+HARD="$(uname -i)"
 
 TIMESTAMP="$(date +"%Y-%m-%dT%H:%M:%S.%6N%:z")"
 
@@ -27,4 +28,4 @@ sed -e "s!@VERSION@!${VERSION}!" \
 
 touch sig.pkcs7
 
-ar -qc "${TARDISK}-${VERSION}.x86_64.vib" descriptor.xml sig.pkcs7 "${TARDISK}"
+ar -qc "${TARDISK}-${VERSION}.${HARD}.vib" descriptor.xml sig.pkcs7 "${TARDISK}"

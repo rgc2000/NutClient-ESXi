@@ -6,8 +6,9 @@ VERSION=2.1.0
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=2.9.2
 NUT_VERSION=2.7.4
+HARD=$(shell uname -i)
 
-VIBNAME=upsmon-$(NUT_VERSION)-$(VERSION).x86_64.vib
+VIBNAME=upsmon-$(NUT_VERSION)-$(VERSION).$(HARD).vib
 ARCHIVE=NutClient-ESXi-$(VERSION).tar.gz
 
 all: $(ARCHIVE)
@@ -63,9 +64,9 @@ $(VIBNAME): payload
 	mv "$(CURDIR)/payload/$(VIBNAME)" "$(CURDIR)/$(VIBNAME)"
 
 $(ARCHIVE): $(VIBNAME)
-	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" $(CURDIR)/data/upsmon-install.sh.template > upsmon-install.sh
-	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" $(CURDIR)/data/upsmon-remove.sh.template > upsmon-remove.sh
-	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" $(CURDIR)/data/upsmon-update.sh.template > upsmon-update.sh
+	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/upsmon-install.sh.template > upsmon-install.sh
+	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/upsmon-remove.sh.template > upsmon-remove.sh
+	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/upsmon-update.sh.template > upsmon-update.sh
 	chmod 755 upsmon-install.sh upsmon-remove.sh upsmon-update.sh
 	tar -cf - readme.txt upsmon-install.sh upsmon-remove.sh upsmon-update.sh $(VIBNAME) | gzip -9 > $(ARCHIVE)
 
