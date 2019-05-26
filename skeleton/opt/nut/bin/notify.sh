@@ -2,7 +2,7 @@
 # Rene GARCIA (rene@margar.fr)
 # Script executed on ups event
 
-. /etc/ups/notify.conf
+. /opt/ups/etc/notify.conf
 [ "${SEND_MAIL}" = 1 ] || exit 0
 
 DOMAIN="$(hostname -d)"

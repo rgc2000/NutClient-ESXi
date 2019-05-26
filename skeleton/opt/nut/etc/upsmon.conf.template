@@ -1,8 +1,4 @@
 # Network UPS Tools: upsmon configuration
-# You can edit the upsmon.conf.template file
-# on ESXi to customize this file except for
-# MONITOR and FINALDELAY added by the upsmon
-# service at the end of the file
 
 MINSUPPLIES 1
 

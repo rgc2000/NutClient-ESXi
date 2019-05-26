@@ -31,7 +31,7 @@ nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	cd nut-$(NUT_VERSION); patch -p1 < $(CURDIR)/patches/nut-$(NUT_VERSION)-esxi.patch
 
 nut-bin: nut-$(NUT_VERSION) libressl-bin
-	cd nut-$(NUT_VERSION); ./configure --prefix=/opt/nut --sysconfdir=/etc/ups --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-I$(CURDIR)/libressl-bin/include" LDFLAGS="-L$(CURDIR)/libressl-bin/lib -lrt"
+	cd nut-$(NUT_VERSION); ./configure --prefix=/opt/nut --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-I$(CURDIR)/libressl-bin/include" LDFLAGS="-L$(CURDIR)/libressl-bin/lib -lrt"
 	cd nut-$(NUT_VERSION); make DESTDIR=$(CURDIR)/nut-bin install
 
 smtptools-$(SMTPTOOLS_VERSION).tar.gz:
@@ -50,7 +50,6 @@ payload: nut-bin smtptools-bin
 	rm -rf payload-tmp
 	cp -pr skeleton payload-tmp
 	mkdir -p payload-tmp/opt/nut/lib payload-tmp/opt/nut/bin payload-tmp/opt/nut/sbin
-	chmod +t payload-tmp/etc/ups/upsmon.conf.template
 	cp -p nut-bin/opt/nut/bin/upsc payload-tmp/opt/nut/bin/
 	cp -p nut-bin/opt/nut/sbin/upsmon payload-tmp/opt/nut/sbin/
 	cp -p smtptools-bin/opt/nut/bin/smtpblast payload-tmp/opt/nut/bin/
