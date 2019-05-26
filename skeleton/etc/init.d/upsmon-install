@@ -3,6 +3,7 @@
 # NUT:
 #   Install/Upgrade/Remove the network UPS tools client
 #
+# chkconfig: on 16 31
 # description: NUT client post-install script
 #
 
@@ -15,11 +16,25 @@ NUT_log() {
    return 0
 }
 
+/etc/init.d/hostd status
+HOSTD_RUNNING=$?
+
 add_advcfg_string() {
    esxcfg-advcfg -q -g "/UserVars/$1" 2>/dev/null
    if [ $? = 1 ]
    then
-      esxcfg-advcfg -A "$1" -T string -E "$2" -F "$3" && NUT_log "Created string advcfg $1" || NUT_log "Failed to create string advcfg $1"
+      esxcfg-advcfg -A "$1" -T string -E "$2" -F "$3"
+      if [ $? = 0 ]
+      then
+         NUT_log "Created string advcfg $1"
+         if [ "$HOSTD_RUNNING" -eq 0 ]
+         then                                              
+            # make hostd refresh its cached list of options  
+            esxcli system settings advanced set -o "/UserVars/$1" -d        
+         fi                                                               
+      else
+         NUT_log "Failed to create string advcfg $1"
+      fi
    else
       NUT_log "Using existing string advcfg $1"
    fi
@@ -29,7 +44,18 @@ add_advcfg_int() {
    esxcfg-advcfg -q -g "/UserVars/$1" 2>/dev/null
    if [ $? = 1 ]
    then
-      esxcfg-advcfg -A "$1" -T int -E "$2" -N "$3" -M "$4" -F "$5" && NUT_log "Created int advcfg $1" || NUT_log "Failed to create int advcfg $1"
+      esxcfg-advcfg -A "$1" -T int -E "$2" -N "$3" -M "$4" -F "$5"
+      if [ $? = 0 ]
+      then
+         NUT_log "Created int advcfg $1"
+         if [ "$HOSTD_RUNNING" -eq 0 ]
+         then
+            # make hostd refresh its cached list of options
+            esxcli system settings advanced set -o "/UserVars/$1" -d
+         fi
+      else
+         NUT_log "Failed to create int advcfg $1"
+      fi
    else
       NUT_log "Using existing int advcfg $1"
    fi
@@ -57,23 +83,43 @@ upsmon_remove() {
    del_advcfg NutSendMail
 }
 
-if [[ "${1}" == "start" ]] && [[ "${2}" == "install" ]]
-then
-   NUT_log "Installing NUT client"
-   upsmon_install
-fi
+for action in "$@"; do
+   echo "Running '${action}' action";
 
-if [[ "${1}" == "start" ]] && [[ "${2}" == "upgrade" ]]
-then
-   NUT_log "Upgrading NUT client"
-   upsmon_install
-fi
+   case "$action" in
+      start)
+         NUT_log "Verify NUT client installation"
+         upsmon_install
+         ;;
 
-if [[ "${1}" == "stop" ]] && [[ "${2}" == "remove" ]]
-then
-   NUT_log "Removing NUT client"
-   upsmon_remove
-fi    
+      stop)
+         true               
+         ;;
+
+      status)
+         true
+         ;;
+
+      install)
+         NUT_log "Installing NUT client"
+         upsmon_install
+         ;;
+
+      upgrade)
+         NUT_log "Upgrading NUT client"
+         upsmon_install
+         ;;
+
+      remove)
+         NUT_log "Removing NUT client"
+         upsmon_remove
+         ;;
+
+      *)
+         echo "Usage: `basename "$0"` {start|stop|status|restart|install|upgrade|remove}"
+         exit 1
+   esac
+done
 
 exit 0
 
