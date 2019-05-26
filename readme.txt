@@ -2,7 +2,7 @@ Network UPS Tools client for VMWare ESXi 5.0-6.7
 ------------------------------------------------
 
 Author : Rene Garcia
-Date   : 24-05-2019
+Date   : 26-05-2019
 Release: 2.1.0
 Licence: GPL2
 
@@ -74,4 +74,4 @@ REVISIONS
 1.4.0 - 16/04/2016 - nut updated to version 2.7.4 - SSL support with embeded libressl 2.3.0
 2.0.0 - 27/01/2017 - compliant with community level on ESXi 6.x
 2.0.1 - 23/05/2019 - set security policy for ESXi 6.7 update 2
-2.1.0 - 24/05/2019 - libressl 2.9.2 - upsmon.conf.template is editable
+2.1.0 - 26/05/2019 - libressl 2.9.2 - vib compatible with ISO integration
