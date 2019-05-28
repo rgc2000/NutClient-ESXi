@@ -9,7 +9,7 @@ NUT_VERSION=2.7.4
 HARD=$(shell uname -i)
 
 VIBNAME=upsmon-$(NUT_VERSION)-$(VERSION).$(HARD).vib
-ARCHIVE=NutClient-ESXi-$(VERSION).tar.gz
+ARCHIVE=NutClient-ESXi-$(VERSION).$(HARD).tar.gz
 
 all: $(ARCHIVE)
 
