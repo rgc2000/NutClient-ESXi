@@ -51,7 +51,7 @@ file and variuos files to help for installation on ESXi host
 
 COMPATIBILITY
 -------------
-This packages has been tested on ESXi from version 5.0 to version 6.7u2
+This packages has been tested on ESXi from version 5.0 to version 7.0.0
 
 DISCLAMER
 ---------

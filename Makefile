@@ -1,4 +1,4 @@
-# upsmon for WMware ESXi 5.x and 6.x
+# upsmon for WMware ESXi 5.x 6.x and 7.x.x
 # Rene Garcia 2017 - GPL Licence
 
 CURDIR=$(PWD)

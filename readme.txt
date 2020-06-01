@@ -1,5 +1,5 @@
-Network UPS Tools client for VMWare ESXi 5.0-6.7
-------------------------------------------------
+Network UPS Tools client for VMWare ESXi 5.0-7.0.0
+--------------------------------------------------
 
 Author : Rene Garcia
 Date   : 26-05-2019
