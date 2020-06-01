@@ -22,7 +22,7 @@ there is no need for generate 64 bit binaries for upsmon to work.
 You will also need the original untouched source file archives for the
 following packages :
 
-  libressl-2.9.2.tar.gz
+  libressl-3.1.2.tar.gz
   nut-2.7.4.tar.gz
   smtptools-0.2.3
 
