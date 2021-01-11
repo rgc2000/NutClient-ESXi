@@ -1,14 +1,14 @@
-Network UPS Tools client for VMWare ESXi 5.0-7.0.0
+Network UPS Tools client for VMWare ESXi 5.0-7.0.1
 --------------------------------------------------
 
 Author : Rene Garcia
-Date   : 01-06-2020
-Release: 2.1.1
+Date   : 11-01-2021
+Release: 2.1.2
 Licence: GPL2
 
 PURPOSE
 
-Provide UPS connectivity to a single vSphere Hypervisor 5.0 to 7.0.0
+Provide UPS connectivity to a single vSphere Hypervisor 5.0 to 7.0.1
 Will shut down properly the host and vms with vmware-tools installed
 if a NUT server tells that the power supply has gone and the UPS
 battery level is critical.
@@ -20,7 +20,7 @@ INSTALL
 - Connect via ssh to the hypervisor and type the followind commands
 
     cd /tmp
-    tar -xzvf NutClient-ESXi-2.1.1.tar.gz
+    tar -xzvf NutClient-ESXi-2.1.2.tar.gz
     ./upsmon-install.sh
 
 - No need to reboot, upsmon can be started immediatly but you need
@@ -76,3 +76,5 @@ REVISIONS
 2.0.1 - 23/05/2019 - set security policy for ESXi 6.7 update 2
 2.1.0 - 26/05/2019 - libressl 2.9.2 - vib compatible with ISO integration
 2.1.1 - 01/06/2020 - libressl 3.1.2 - fixed FROM value on smtp protocol for email notifications
+2.1.2 - 11/01/2021 - libressl 3.2.3
+
