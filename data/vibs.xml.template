@@ -1,0 +1,3 @@
+  <relative-path>vib20/@LCNAME@/@VIBNAME@</relative-path>
+  <packed-size>@SIZE@</packed-size>
+  <checksum checksum-type="sha-256">@SHA256@</checksum>

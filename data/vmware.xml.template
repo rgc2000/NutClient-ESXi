@@ -1,0 +1,57 @@
+<metadataResponse>
+  <version>3.0</version>
+  <timestamp>@TIMESTAMP@</timestamp>
+  <bulletin>
+    <id>@NAME@-@VERSION@</id>
+    <vendor>@VENDOR@</vendor>
+    <summary>Network UPS Tools client</summary>
+    <severity>general</severity>
+    <category>general</category>
+    <urgency>general</urgency>
+    <releaseType>extension</releaseType>
+    <description>Network UPS Tools client for VMware ESXi 5.0-7.0</description>
+    <kbUrl></kbUrl>
+    <contact></contact>
+    <releaseDate>@DATE@</releaseDate>
+    <platforms>
+      <softwarePlatform locale="" version="5.*" productLineID="embeddedEsx"/>
+      <softwarePlatform locale="" version="6.*" productLineID="embeddedEsx"/>
+      <softwarePlatform locale="" version="7.*" productLineID="embeddedEsx"/>
+    </platforms>
+    <vibList>
+      <vib>
+        <vibVersion>1.4.5</vibVersion>
+        <vibID>@VENDOR@_bootbank_@LCNAME@_@VERSION@</vibID>
+        <name>@LCNAME@</name>
+        <version>@VERSION@</version>
+        <vendor>@VENDOR@</vendor>
+        <vibType>bootbank</vibType>
+        <summary>Network UPS Tools client</summary>
+        <systemReqs>
+          <maintenanceMode>false</maintenanceMode>
+          <swPlatform locale="" version="" productLineID="embeddedEsx"/>
+        </systemReqs>
+        <relationships>
+          <depends/>
+          <conflicts/>
+          <replaces/>
+          <provides/>
+          <compatibleWith/>
+        </relationships>
+        <postInstall>
+          <rebootRequired>false</rebootRequired>
+          <hostdRestart>false</hostdRestart>
+        </postInstall>
+        <vibFile>
+          <sourceUrl></sourceUrl>
+          <relativePath>vib20/@LCNAME@/@VIBNAME@</relativePath>
+          <packedSize>@SIZE@</packedSize>
+          <checksum>
+            <checksumType>sha-256</checksumType>
+            <checksum>@SHA256@</checksum>
+          </checksum>
+        </vibFile>
+      </vib>
+    </vibList>
+  </bulletin>
+</metadataResponse>

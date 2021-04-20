@@ -1,0 +1,23 @@
+<metaList>
+  <metadata>
+    <productId>embeddedEsx</productId>
+    <version>5.*</version>
+    <locale></locale>
+    <url>@VENDOR@-@NAME@-@VERSION@-metadata.zip</url>
+    <channelName>default</channelName>
+  </metadata>
+  <metadata>
+    <productId>embeddedEsx</productId>
+    <version>6.*</version>
+    <locale></locale>
+    <url>@VENDOR@-@NAME@-@VERSION@-metadata.zip</url>
+    <channelName>default</channelName>
+  </metadata>
+  <metadata>
+    <productId>embeddedEsx</productId>
+    <version>7.*</version>
+    <locale></locale>
+    <url>@VENDOR@-@NAME@-@VERSION@-metadata.zip</url>
+    <channelName>default</channelName>
+  </metadata>
+</metaList>

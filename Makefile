@@ -1,17 +1,24 @@
 # upsmon for WMware ESXi 5.x 6.x and 7.x.x
 # Rene Garcia 2017 - GPL Licence
 
-CURDIR=$(PWD)
-VERSION=2.1.3
+PROJECT_VERSION=2.1.3
+
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=3.2.5
 NUT_VERSION=2.7.4
 HARD=$(shell uname -i)
 
-VIBNAME=upsmon-$(NUT_VERSION)-$(VERSION).$(HARD).vib
-ARCHIVE=NutClient-ESXi-$(VERSION).$(HARD).tar.gz
+PROJECT=NutClient
+NAME=upsmon
+CURDIR=$(PWD)
+VERSION=$(NUT_VERSION)-$(PROJECT_VERSION)
 
-all: $(ARCHIVE)
+VIBNAME=$(NAME)-$(VERSION).$(HARD).vib
+ARCNAME=$(PROJECT)-ESXi-$(VERSION)
+ARCHIVE=$(ARCNAME).$(HARD).tar.gz
+DEPOT=$(PROJECT)-$(VERSION)-offline_bundle.zip
+
+all: $(ARCHIVE) $(DEPOT)
 
 libressl-$(LIBRESSL_VERSION).tar.gz:
 	wget --no-check-certificate http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$(LIBRESSL_VERSION).tar.gz
@@ -59,15 +66,18 @@ payload: nut-bin smtptools-bin
 	touch payload
 
 $(VIBNAME): payload
-	script/mkvib.sh $(CURDIR)/payload "$(NUT_VERSION)-$(VERSION)" upsmon $(CURDIR)/data/descriptor.xml.template
+	script/mkvib.sh $(CURDIR)/payload "$(VERSION)" $(NAME) $(CURDIR)/data/descriptor.xml.template
 	mv "$(CURDIR)/payload/$(VIBNAME)" "$(CURDIR)/$(VIBNAME)"
 
 $(ARCHIVE): $(VIBNAME)
-	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/upsmon-install.sh.template > upsmon-install.sh
-	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/upsmon-remove.sh.template > upsmon-remove.sh
-	sed -e "s!@VERSION@!$(NUT_VERSION)-$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/upsmon-update.sh.template > upsmon-update.sh
-	chmod 755 upsmon-install.sh upsmon-remove.sh upsmon-update.sh
-	tar -cf - readme.txt upsmon-install.sh upsmon-remove.sh upsmon-update.sh $(VIBNAME) | gzip -9 > $(ARCHIVE)
+	sed -e "s!@VERSION@!$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/$(NAME)-install.sh.template > upsmon-install.sh
+	sed -e "s!@VERSION@!$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/$(NAME)-remove.sh.template > upsmon-remove.sh
+	sed -e "s!@VERSION@!$(VERSION)!" -e "s!@HARD@!$(HARD)!" $(CURDIR)/data/$(NAME)-update.sh.template > upsmon-update.sh
+	chmod 755 $(NAME)-install.sh $(NAME)-remove.sh $(NAME)-update.sh
+	tar -cf - readme.txt $(NAME)-install.sh $(NAME)-remove.sh $(NAME)-update.sh $(VIBNAME) | gzip -9 > $(ARCHIVE)
+
+$(DEPOT): $(VIBNAME)
+	script/mkbundle.sh $(PROJECT) $(VERSION) $(VIBNAME)
 
 archive:
 	git archive --format=tar --prefix=NutClient-ESXi-$(VERSION)-src/ $(VERSION) | gzip -9 > NutClient-ESXi-$(VERSION)-src.tar.gz
@@ -76,6 +86,7 @@ clean:
 	rm -rf nut-bin nut-$(NUT_VERSION)
 	rm -rf libressl-bin libressl-$(LIBRESSL_VERSION)
 	rm -rf smtptools-bin smtptools-$(SMTPTOOLS_VERSION)
-	rm -rf payload
-	rm -f $(VIBNAME) upsmon-install.sh upsmon-remove.sh upsmon-update.sh
+	rm -rf payload tmp
+	rm -f $(VIBNAME) $(NAME)-install.sh $(NAME)-remove.sh $(NAME)-update.sh
 	rm -f $(ARCHIVE)
+	rm -f $(DEPOT)
