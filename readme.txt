@@ -78,3 +78,4 @@ REVISIONS
 2.1.1 - 01/06/2020 - libressl 3.1.2 - fixed FROM value on smtp protocol for email notifications
 2.1.2 - 11/01/2021 - libressl 3.2.3 - tested on ESXi 7.0
 2.1.3 - 22/03/2021 - libressl 3.2.5
+2.1.4 - 21/04/2021 - build also an offline depot for image builder, keep nut tools version

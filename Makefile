@@ -1,7 +1,7 @@
 # upsmon for WMware ESXi 5.x 6.x and 7.x.x
 # Rene Garcia 2017 - GPL Licence
 
-PROJECT_VERSION=2.1.3
+PROJECT_VERSION=2.1.4
 
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=3.2.5
@@ -38,7 +38,7 @@ nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	cd nut-$(NUT_VERSION); patch -p1 < $(CURDIR)/patches/nut-$(NUT_VERSION)-esxi.patch
 
 nut-bin: nut-$(NUT_VERSION) libressl-bin
-	cd nut-$(NUT_VERSION); ./configure --prefix=/opt/nut --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-I$(CURDIR)/libressl-bin/include" LDFLAGS="-L$(CURDIR)/libressl-bin/lib -lrt"
+	cd nut-$(NUT_VERSION); touch .git; ./configure --prefix=/opt/nut --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl CFLAGS="-I$(CURDIR)/libressl-bin/include" LDFLAGS="-L$(CURDIR)/libressl-bin/lib -lrt"
 	cd nut-$(NUT_VERSION); make DESTDIR=$(CURDIR)/nut-bin install
 
 smtptools-$(SMTPTOOLS_VERSION).tar.gz:
