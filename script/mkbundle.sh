@@ -85,7 +85,7 @@ replaceKeywords "${DATADIR}/index.xml.template" > "${TMP_BUNDLE}/index.xml"
 
 (
     cd "${TMP_BUNDLE}"
-    zip -r "${TARGET_DIR}/${NAME}-${VERSION}-offline_bundle.zip" *
+    zip -r "${TARGET_DIR}/${NAME}-ESXi-${VERSION}-offline_bundle.zip" *
 )
 
 # =======  Create the manitest
