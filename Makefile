@@ -1,10 +1,10 @@
 # upsmon for WMware ESXi 5.x 6.x and 7.x.x
 # Rene Garcia 2017 - GPL Licence
 
-PROJECT_VERSION=2.1.4
+PROJECT_VERSION=2.1.5
 
 SMTPTOOLS_VERSION=0.2.3
-LIBRESSL_VERSION=3.2.5
+LIBRESSL_VERSION=3.3.3
 NUT_VERSION=2.7.4
 HARD=$(shell uname -i)
 
@@ -90,3 +90,9 @@ clean:
 	rm -f $(VIBNAME) $(NAME)-install.sh $(NAME)-remove.sh $(NAME)-update.sh
 	rm -f $(ARCHIVE)
 	rm -f $(DEPOT)
+
+cleaner: clean
+	rm -f libressl-$(LIBRESSL_VERSION).tar.gz
+	rm -f smtptools-$(SMTPTOOLS_VERSION).tar.gz
+	rm -f nut-$(NUT_VERSION).tar.gz
+	rm -f NutClient-ESXi-$(VERSION)-src.tar.gz
