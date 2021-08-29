@@ -80,3 +80,5 @@ REVISIONS
 2.1.3 - 22/03/2021 - libressl 3.2.5
 2.1.4 - 21/04/2021 - build also an offline depot for image builder, keep nut tools version
 2.1.5 - 07/05/2021 - libressl 3.3.3
+2.1.6 - 29/08/2021 - libressl 3.3.4
+
