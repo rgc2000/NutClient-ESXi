@@ -2,8 +2,8 @@ Network UPS Tools client for VMWare ESXi 5.0-7.0
 ------------------------------------------------
 
 Author : Rene Garcia
-Date   : 07-05-2021
-Release: 2.1.5
+Date   : 29-12-2021
+Release: 2.1.7
 Licence: GPL2
 
 PURPOSE
@@ -81,4 +81,5 @@ REVISIONS
 2.1.4 - 21/04/2021 - build also an offline depot for image builder, keep nut tools version
 2.1.5 - 07/05/2021 - libressl 3.3.3
 2.1.6 - 29/08/2021 - libressl 3.3.4
+2.1.7 - 29/12/2021 - libressl 3.4.2
 
