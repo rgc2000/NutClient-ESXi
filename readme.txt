@@ -2,8 +2,8 @@ Network UPS Tools client for VMWare ESXi 5.0-7.0
 ------------------------------------------------
 
 Author : Rene Garcia
-Date   : 29-12-2021
-Release: 2.1.7
+Date   : 14-02-2022
+Release: 2.2.0
 Licence: GPL2
 
 PURPOSE
@@ -20,7 +20,7 @@ INSTALL
 - Connect via ssh to the hypervisor and type the followind commands
 
     cd /tmp
-    tar -xzvf NutClient-ESXi-2.1.5.tar.gz
+    tar -xzvf NutClient-ESXi-2.2.0.tar.gz
     ./upsmon-install.sh
 
 - No need to reboot, upsmon can be started immediatly but you need
@@ -46,6 +46,7 @@ CONFIGURATION
                             server is declared, all need to use the same user/password
    UserVars.NutPassword   : Username password on NUT server
    UserVars.NutFinalDelay : Seconds to wait on low battery event before shutting down
+   UserVars.NutMinSupplies: Number of power supplies needed to keep the system running
    UserVars.NutSendMail   : Set to 1 if you want a mail to be sent on UPS event
    UserVars.NutMailTo     : Email address to send mail to on UPS event
 
@@ -82,4 +83,5 @@ REVISIONS
 2.1.5 - 07/05/2021 - libressl 3.3.3
 2.1.6 - 29/08/2021 - libressl 3.3.4
 2.1.7 - 29/12/2021 - libressl 3.4.2
+2.2.0 - 14/02/2022 - minsupplies is configurable
 
