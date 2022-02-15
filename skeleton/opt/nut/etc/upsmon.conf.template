@@ -1,7 +1,5 @@
 # Network UPS Tools: upsmon configuration
 
-MINSUPPLIES 1
-
 SHUTDOWNCMD "poweroff"
 NOTIFYCMD "/opt/nut/bin/notify.sh"
 

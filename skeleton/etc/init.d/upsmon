@@ -25,6 +25,7 @@ create_config() {
    UPS_FINALDELAY="$(esxcfg-advcfg -q -g /UserVars/NutFinalDelay)"
    UPS_SENDMAIL="$(esxcfg-advcfg -q -g /UserVars/NutSendMail)"
    UPS_MAILTO="$(esxcfg-advcfg -q -g /UserVars/NutMailTo)"
+   UPS_MINSUPPLIES="$(esxcfg-advcfg -q -g /UserVars/NutMinSupplies)"
 
    cat /opt/nut/etc/upsmon.conf.template > /opt/nut/etc/upsmon.conf
 
@@ -34,6 +35,7 @@ create_config() {
    done
 
    echo "FINALDELAY ${UPS_FINALDELAY}" >> /opt/nut/etc/upsmon.conf
+   echo "MINSUPPLIES ${UPS_MINSUPPLIES}" >> /opt/nut/etc/upsmon.conf
 
    sed -e "s/@UPS_SENDMAIL@/$UPS_SENDMAIL/g" \
        -e "s/@UPS_MAILTO@/$UPS_MAILTO/g" \
