@@ -3,12 +3,14 @@
   <vendor>@VENDOR@</vendor>
   <summary>NUT Client</summary>
   <severity>general</severity>
-  <category>general</category>
-  <urgency>general</urgency>
+  <category>enhancement</category>
+  <urgency>moderate</urgency>
   <releaseType>extension</releaseType>
   <description>Network UPS Tools client for ESXi</description>
-  <kbUrl></kbUrl>
-  <contact></contact>
+  <kbUrl/>
+  <contact/>
+  <componentNameSpec uiString="upsmon" name="upsmon"/>
+  <componentVersionSpec uiString="@VERSION@" version="@VERSION@"/>
   <releaseDate>@DATE@</releaseDate>
   <platforms>
     <softwarePlatform locale="" version="5.*" productLineID="embeddedEsx"/>

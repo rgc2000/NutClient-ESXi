@@ -20,9 +20,10 @@ function replaceKeywords
         -e "s!@VIBNAME@!${VIBNAME}!g" "${TEMPLATE}"
 }
 
-NAME="${1}"
-VERSION="${2}"
-VIBFILE="${3}"
+PROJECT="${1}"
+NAME="${2}"
+VERSION="${3}"
+VIBFILE="${4}"
 VIBFILE="$(readlink -m ${VIBFILE})"
 VENDOR=Margar
 VENDORCODE=margar
@@ -85,7 +86,7 @@ replaceKeywords "${DATADIR}/index.xml.template" > "${TMP_BUNDLE}/index.xml"
 
 (
     cd "${TMP_BUNDLE}"
-    zip -r "${TARGET_DIR}/${NAME}-ESXi-${VERSION}-offline_bundle.zip" *
+    zip -r "${TARGET_DIR}/${PROJECT}-ESXi-${VERSION}-offline_bundle.zip" *
 )
 
 # =======  Create the manitest

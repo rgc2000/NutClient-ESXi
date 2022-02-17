@@ -6,12 +6,14 @@
     <vendor>@VENDOR@</vendor>
     <summary>Network UPS Tools client</summary>
     <severity>general</severity>
-    <category>general</category>
-    <urgency>general</urgency>
+    <category>enhancement</category>
+    <urgency>moderate</urgency>
     <releaseType>extension</releaseType>
     <description>Network UPS Tools client for VMware ESXi 5.0-7.0</description>
     <kbUrl></kbUrl>
     <contact></contact>
+    <componentNameSpec uiString="upsmon" name="upsmon"/>
+    <componentVersionSpec uiString="@VERSION@" version="@VERSION@"/>
     <releaseDate>@DATE@</releaseDate>
     <platforms>
       <softwarePlatform locale="" version="5.*" productLineID="embeddedEsx"/>
@@ -22,7 +24,7 @@
       <vib>
         <vibVersion>1.4.5</vibVersion>
         <vibID>@VENDOR@_bootbank_@LCNAME@_@VERSION@</vibID>
-        <name>@LCNAME@</name>
+        <name>upsmon</name>
         <version>@VERSION@</version>
         <vendor>@VENDOR@</vendor>
         <vibType>bootbank</vibType>
