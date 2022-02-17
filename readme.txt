@@ -3,7 +3,7 @@ Network UPS Tools client for VMWare ESXi 5.0-7.0
 
 Author : Rene Garcia
 Date   : 17-02-2022
-Release: 2.2.1
+Release: 2.2.2
 Licence: GPL2
 
 PURPOSE
@@ -20,7 +20,7 @@ INSTALL
 - Connect via ssh to the hypervisor and type the followind commands
 
     cd /tmp
-    tar -xzvf NutClient-ESXi-2.2.1.tar.gz
+    tar -xzvf NutClient-ESXi-2.2.2.tar.gz
     ./upsmon-install.sh
 
 - No need to reboot, upsmon can be started immediatly but you need
@@ -85,3 +85,4 @@ REVISIONS
 2.1.7 - 29/12/2021 - libressl 3.4.2
 2.2.0 - 14/02/2022 - minsupplies is configurable
 2.2.1 - 17/02/2022 - typo on parameter description
+2.2.2 - 17/02/2022 - naming issue fixed in offline bundle, no changes in code

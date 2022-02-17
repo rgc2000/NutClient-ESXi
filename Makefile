@@ -1,7 +1,7 @@
 # upsmon for WMware ESXi 5.x 6.x and 7.x.x
 # Rene Garcia 2017 - GPL Licence
 
-PROJECT_VERSION=2.2.1
+PROJECT_VERSION=2.2.2
 
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=3.4.2
