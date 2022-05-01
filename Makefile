@@ -4,8 +4,8 @@
 PROJECT_VERSION=2.2.2
 
 SMTPTOOLS_VERSION=0.2.3
-LIBRESSL_VERSION=3.4.3
-NUT_VERSION=2.7.4
+LIBRESSL_VERSION=3.5.2
+NUT_VERSION=2.8.0
 HARD=$(shell uname -i)
 
 PROJECT=NutClient
@@ -31,7 +31,7 @@ libressl-bin: libressl-$(LIBRESSL_VERSION)
 	cd libressl-$(LIBRESSL_VERSION) ; make install
 
 nut-$(NUT_VERSION).tar.gz:
-	wget --no-check-certificate http://networkupstools.org/source/2.7/nut-$(NUT_VERSION).tar.gz
+	wget --no-check-certificate http://networkupstools.org/source/2.8/nut-$(NUT_VERSION).tar.gz
 
 nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	tar -xf nut-$(NUT_VERSION).tar.gz
