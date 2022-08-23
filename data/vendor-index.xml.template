@@ -20,4 +20,11 @@
     <url>@VENDOR@-@NAME@-@VERSION@-metadata.zip</url>
     <channelName>default</channelName>
   </metadata>
+  <metadata>
+    <productId>embeddedEsx</productId>
+    <version>8.*</version>
+    <locale></locale>
+    <url>@VENDOR@-@NAME@-@VERSION@-metadata.zip</url>
+    <channelName>default</channelName>
+  </metadata>
 </metaList>

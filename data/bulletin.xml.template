@@ -16,6 +16,7 @@
     <softwarePlatform locale="" version="5.*" productLineID="embeddedEsx"/>
     <softwarePlatform locale="" version="6.*" productLineID="embeddedEsx"/>
     <softwarePlatform locale="" version="7.*" productLineID="embeddedEsx"/>
+    <softwarePlatform locale="" version="8.*" productLineID="embeddedEsx"/>
   </platforms>
   <vibList>
     <vibID>@VENDOR@_bootbank_@LCNAME@_@VERSION@</vibID>

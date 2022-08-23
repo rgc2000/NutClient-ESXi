@@ -4,7 +4,7 @@
   <version>@VERSION@</version>
   <vendor>Margar</vendor>
   <summary>Network UPS Tools client</summary>
-  <description>Network UPS Tools client for VMware ESXi 5.0-7.0</description>
+  <description>Network UPS Tools client for VMware ESXi 5.0-8.0</description>
   <release-date>@TIMESTAMP@</release-date>
   <urls>
     <url key="kb">http://rene.margar.fr/2012/05/client-nut-pour-esxi-5-0/</url>
