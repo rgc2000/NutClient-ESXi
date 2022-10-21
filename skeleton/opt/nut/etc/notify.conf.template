@@ -1,3 +1,4 @@
-# mail notification configuration
+# notification configuration
+ONBATT_DELAY="@UPS_ONBATTDELAY@"
 SEND_MAIL="@UPS_SENDMAIL@"
 TO="@UPS_MAILTO@"

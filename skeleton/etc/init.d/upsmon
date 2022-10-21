@@ -26,12 +26,13 @@ create_config() {
    UPS_SENDMAIL="$(esxcfg-advcfg -q -g /UserVars/NutSendMail)"
    UPS_MAILTO="$(esxcfg-advcfg -q -g /UserVars/NutMailTo)"
    UPS_MINSUPPLIES="$(esxcfg-advcfg -q -g /UserVars/NutMinSupplies)"
+   UPS_ONBATTDELAY="$(esxcfg-advcfg -q -g /UserVars/NutOnBatteryDelay)"
 
    cat /opt/nut/etc/upsmon.conf.template > /opt/nut/etc/upsmon.conf
 
    for i in ${UPS_NAME}
    do
-      echo "MONITOR ${i} 1 ${UPS_USER} ${UPS_PASS} slave" >> /opt/nut/etc/upsmon.conf
+      echo "MONITOR ${i} 1 ${UPS_USER} ${UPS_PASS} secondary" >> /opt/nut/etc/upsmon.conf
    done
 
    echo "FINALDELAY ${UPS_FINALDELAY}" >> /opt/nut/etc/upsmon.conf
@@ -39,6 +40,7 @@ create_config() {
 
    sed -e "s/@UPS_SENDMAIL@/$UPS_SENDMAIL/g" \
        -e "s/@UPS_MAILTO@/$UPS_MAILTO/g" \
+       -e "s/@UPS_ONBATTDELAY@/$UPS_ONBATTDELAY/g" \
        /opt/nut/etc/notify.conf.template > /opt/nut/etc/notify.conf
 }
 
