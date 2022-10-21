@@ -35,7 +35,7 @@
     <payload name="upsmon" type="tgz" size="@SIZE@">
       <checksum checksum-type="sha-256" verify-process="gunzip">@SHAGZ256@</checksum>
       <checksum checksum-type="sha-256">@SHA256@</checksum>
-      <checksum checksum-type="sha-1" verify-process="gunzip">@SHA1@</checksum>
+      <checksum checksum-type="sha-1" verify-process="gunzip">@SHAGZ1@</checksum>
     </payload>
   </payloads>
 </vib>
