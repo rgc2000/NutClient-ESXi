@@ -2,8 +2,8 @@ Network UPS Tools client for VMWare ESXi 5.0-8.0
 ------------------------------------------------
 
 Author : Rene Garcia
-Date   : 19-10-2022
-Release: 2.3.2
+Date   : 23-10-2022
+Release: 2.4.0
 Licence: GPL2
 
 PURPOSE
@@ -20,7 +20,7 @@ INSTALL
 - Connect via ssh to the hypervisor and type the followind commands
 
     cd /tmp
-    tar -xzvf NutClient-ESXi-2.8.0-2.3.2.x86_64.tar.gz
+    tar -xzvf NutClient-ESXi-2.8.0-2.4.0.x86_64.tar.gz
     ./upsmon-install.sh
 
 - No need to reboot, upsmon can be started immediatly but you need
@@ -40,15 +40,24 @@ CONFIGURATION
 - Start vSphere Client and go to configuration tab of the hypervisor
 - Open Advanced Parameters and go to UserVars
 - Configure these parameters to match your needs :
-   UserVars.NutUpsName    : UPS name on remote NUT server (ups_name@server_name), 
-                            can be a space separated list of NUT servers
-   UserVars.NutUser       : Username to connect to NUT server. If more that one NUT
-                            server is declared, all need to use the same user/password
-   UserVars.NutPassword   : Username password on NUT server
-   UserVars.NutFinalDelay : Seconds to wait on low battery event before shutting down
-   UserVars.NutMinSupplies: Number of power supplies needed to keep the system running
-   UserVars.NutSendMail   : Set to 1 if you want a mail to be sent on UPS event
-   UserVars.NutMailTo     : Email address to send mail to on UPS event
+   UserVars.NutUpsName        : UPS name on remote NUT server
+                                (ups_name@server_name), can be a space
+                                separated list of NUT servers.
+   UserVars.NutUser           : Username to connect to NUT server.
+                                If more that one NUT server is declared,
+                                all need to use the same user/password
+   UserVars.NutPassword       : Username password on NUT server.
+   UserVars.NutFinalDelay     : Seconds to wait on low battery event
+                                before shutting down.
+   UserVars.NutOnBatteryDelay : Seconds to wait running on battery
+                                before shutting down. Default is 0 to
+                                disable this feature and wait for low
+                                battery event before shutting down.
+   UserVars.NutMinSupplies    : Number of power supplies needed to keep
+                                the system running.
+   UserVars.NutSendMail       : Set to 1 if you want a mail to be sent
+                                on UPS events.
+   UserVars.NutMailTo         : Email address to send mail to on UPS events.
 
 - If you don't see UserVars parameters restart hostd service on
   hypervisor only if you have no vmware job running
@@ -58,6 +67,8 @@ CONFIGURATION
 - On configuration tab of the hypervisor go to Security Profile
 - Open services properties
 - Select Network UPS Tools client an click on Options
+- When you change the values of the UserVars you MUST restart NUT client service
+  to reload the configuration.
 
 WARNINGS
 
@@ -89,3 +100,4 @@ REVISIONS
 2.3.0 - 02/05/2022 - nut 2.8.0, libressl 3.5.2
 2.3.1 - 23/08/2022 - libressl 2.5.3 - ESXi 8.0 support
 2.3.2 - 19/10/2022 - ESXi 8.0 support, 64-bit binaries
+2.4.0 - 23/10/2022 - New feature: Configurable shutdown delay when running on battery
