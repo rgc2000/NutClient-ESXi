@@ -16,15 +16,15 @@ then
       sleep "${ONBATT_DELAY}"
       # force shutdown
       rm "${SHUDOWN_PID_FILE}"
-      /opt/nut/sbin/upsd -c fsd
+      /opt/nut/sbin/upsmon -c fsd
       exit 0
     ) &
     echo $! > "${SHUDOWN_PID_FILE}"
   fi
 fi
 
-# Abort delayed shutdown if UPS is back ONLINE
-if [ "${NOTIFYTYPE}" = "ONLINE" -a -f "${SHUDOWN_PID_FILE}" ]
+# Abort delayed shutdown if UPS is back ONLINE or SHUTDOWN requested immediately
+if [ \( "${NOTIFYTYPE}" = "ONLINE" -o "${NOTIFYTYPE}" = "SHUTDOWN" \) -a -f "${SHUDOWN_PID_FILE}" ]
 then
   kill $(cat "${SHUDOWN_PID_FILE}")
   rm "${SHUDOWN_PID_FILE}"
