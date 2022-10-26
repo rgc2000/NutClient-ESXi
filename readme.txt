@@ -4,7 +4,7 @@ Network UPS Tools client for VMWare ESXi 5.0-8.0
 Author : Rene Garcia
 Date   : 23-10-2022
 Release: 2.4.0
-Licence: GPL2
+Licence: GPLv3
 
 PURPOSE
 
