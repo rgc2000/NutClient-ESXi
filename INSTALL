@@ -4,27 +4,24 @@ HOW TO COMPILE
 You will need a Linux environment to compile and create the VIB package
 for ESXi
 
-This module has been developped under a 32-bit CentOS 5 linux with the
-following tools to compile the code (not exhaustive) :
+This module has been developped under a 64-bit CentOS 7 linux. Use the
+minimal CentOS 7 installation profile and add the following packages
+with yum install :
 
-  gcc
-  gnu make
-  tar
-  ar
-  sha256sul
-  sha1sum
-  gzip
+  wget
   patch
+  gcc
+  zip
 
-The choice of CentOS 5 is to make the package compatible with ESXi 5 and
-there is no need for generate 64 bit binaries for upsmon to work.
+The choice of CentOS 7 is to make the package compatible from ESXi 5 to
+ESXi 8. Generating of 64-bit binaries is mandatory for ESXi 8 only.
 
 You will also need the original untouched source file archives for the
 following packages :
 
-  libressl-3.1.2.tar.gz
-  nut-2.7.4.tar.gz
-  smtptools-0.2.3
+  libressl
+  nut
+  smtptools
 
 Check each package for their respective LICENSE.
 
@@ -47,11 +44,15 @@ the version of this package. x.x.x is the version of NUT, y.y.y is the
 version of this project.
 
 And also and archive called NutClient-ESXi-y.y.y.tar.gz containing the VIB
-file and variuos files to help for installation on ESXi host
+file and various files to help for installation on ESXi host
+
+An offline bundle file is also generated for direct installation from vCenter or
+ESXi ISO customization with name NutClient-ESXi-x.x.x-y.y.y-offline_bundle.zip
+(don't forget to set acceptance level to CommunitySupported for ISO)
 
 COMPATIBILITY
 -------------
-This packages has been tested on ESXi from version 5.0 to version 7.0.0
+This packages has been tested on ESXi from version 5.0 to version 8.0
 
 DISCLAMER
 ---------
