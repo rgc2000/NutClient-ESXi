@@ -6,8 +6,11 @@ SHUDOWN_PID_FILE="/var/run/ups_shutdown.pid"
 
 . /opt/nut/etc/notify.conf
 
-# Delayed shutdown if running on battery
-if [ "${NOTIFYTYPE}" = "ONBATT" -a "${ONBATT_DELAY}" -gt 0 ]
+# count how many UPSes are still online
+NB_UPS_ONLINE=$(for UPS in ${UPS_LIST}; do /opt/nut/bin/upsc "${UPS}" ups.status; done | grep -c OL)
+
+# Delayed shutdown if running on battery with less than minsupplies online
+if [ "${NOTIFYTYPE}" = "ONBATT" -a "${NB_UPS_ONLINE}" -lt "${MINSUPPLIES}" -a "${ONBATT_DELAY}" -gt 0 ]
 then
   if [ ! -f "${SHUDOWN_PID_FILE}" ]
   then
@@ -23,8 +26,8 @@ then
   fi
 fi
 
-# Abort delayed shutdown if UPS is back ONLINE or SHUTDOWN requested immediately
-if [ \( "${NOTIFYTYPE}" = "ONLINE" -o "${NOTIFYTYPE}" = "SHUTDOWN" \) -a -f "${SHUDOWN_PID_FILE}" ]
+# Abort delayed shutdown if online UPS counter is greater or equal to minsupplies or SHUTDOWN requested immediately
+if [ \( "${NB_UPS_ONLINE}" -ge "${MINSUPPLIES}" -o "${NOTIFYTYPE}" = "SHUTDOWN" \) -a -f "${SHUDOWN_PID_FILE}" ]
 then
   kill $(cat "${SHUDOWN_PID_FILE}")
   rm "${SHUDOWN_PID_FILE}"
@@ -33,6 +36,7 @@ fi
 # End here if no mail to send
 [ "${SEND_MAIL}" = 1 ] || exit 0
 
+# Send an email
 DOMAIN="$(hostname -d)"
 FROM="$(hostname -s)@${DOMAIN}"
 FROMHEADER="${FROM} (ESXi on $(hostname -s))"

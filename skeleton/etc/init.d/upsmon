@@ -41,6 +41,8 @@ create_config() {
    sed -e "s/@UPS_SENDMAIL@/$UPS_SENDMAIL/g" \
        -e "s/@UPS_MAILTO@/$UPS_MAILTO/g" \
        -e "s/@UPS_ONBATTDELAY@/$UPS_ONBATTDELAY/g" \
+       -e "s/@UPS_NAME@/$UPS_NAME/g" \
+       -e "s/@UPS_MINSUPPLIES@/$UPS_MINSUPPLIES/g" \
        /opt/nut/etc/notify.conf.template > /opt/nut/etc/notify.conf
 }
 
