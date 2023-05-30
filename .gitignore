@@ -1,3 +1,7 @@
-libressl-*.tar.*
-nut-*.tar.*
-smtptools-*.tar.*
+libressl-*
+nut-*
+smtptools-*
+upsmon-*
+NutClient-ESXi-*
+payload
+tmp
