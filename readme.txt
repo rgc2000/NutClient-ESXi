@@ -101,5 +101,5 @@ REVISIONS
 2.3.1 - 23/08/2022 - libressl 2.5.3 - ESXi 8.0 support
 2.3.2 - 19/10/2022 - ESXi 8.0 support, 64-bit binaries
 2.4.0 - 23/10/2022 - New feature: Configurable shutdown delay when running on battery
-2.4.1 - 21/11/2022 - libressl 2.6.1 - Fix on battery delay shutdown with multiple ups setup
-2.4.2 - 19/02/2023 - libressl 2.6.2
+2.4.1 - 21/11/2022 - libressl 3.6.1 - Fix on battery delay shutdown with multiple ups setup
+2.4.2 - 19/02/2023 - libressl 3.6.2
