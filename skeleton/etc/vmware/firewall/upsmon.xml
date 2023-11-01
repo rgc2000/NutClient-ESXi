@@ -1,6 +1,6 @@
 <!-- Firewall configuration for NUT client -->
 <ConfigRoot>
-  <service>
+  <service id='0000'>
     <id>NutServer</id>
     <rule id='0000'>
       <direction>outbound</direction>

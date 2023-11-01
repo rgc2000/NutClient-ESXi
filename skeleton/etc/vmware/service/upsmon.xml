@@ -1,7 +1,7 @@
 <!-- List of services for NUT client -->
 
 <ConfigRoot>
-  <service>
+  <service id='0000'>
     <id>NutClient</id>
     <initfilename>upsmon</initfilename>
     <ruleset>NutServer</ruleset>
