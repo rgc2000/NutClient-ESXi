@@ -1,7 +1,7 @@
 # upsmon for WMware ESXi 5.0 to 8.0
-# Rene Garcia 2022 - GPL Licence
+# Rene Garcia 2023 - GPL Licence
 
-PROJECT_VERSION=2.4.2
+PROJECT_VERSION=2.5.0
 
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=3.7.3

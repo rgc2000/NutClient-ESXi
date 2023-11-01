@@ -103,3 +103,4 @@ REVISIONS
 2.4.0 - 23/10/2022 - New feature: Configurable shutdown delay when running on battery
 2.4.1 - 21/11/2022 - libressl 3.6.1 - Fix on battery delay shutdown with multiple ups setup
 2.4.2 - 19/02/2023 - libressl 3.6.2
+2.5.0 - 01/11/2023 - nut updated to version 2.8.1 - libressl 3.7.3 - UserVars description
