@@ -42,7 +42,7 @@ nut-bin: nut-$(NUT_VERSION) libressl-bin
 	cd nut-$(NUT_VERSION); make DESTDIR=$(CURDIR)/nut-bin install
 
 smtptools-$(SMTPTOOLS_VERSION).tar.gz:
-	wget --no-check-certificate http://ftp.dei.uc.pt/pub/linux/gentoo/distfiles/smtptools-$(SMTPTOOLS_VERSION).tar.gz
+	wget --no-check-certificate http://distfiles.gentoo.org/distfiles/c2/smtptools-$(SMTPTOOLS_VERSION).tar.gz
 
 smtptools-$(SMTPTOOLS_VERSION): smtptools-$(SMTPTOOLS_VERSION).tar.gz
 	tar -xf smtptools-$(SMTPTOOLS_VERSION).tar.gz
