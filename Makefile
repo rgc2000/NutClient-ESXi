@@ -4,7 +4,7 @@
 PROJECT_VERSION=2.5.0
 
 SMTPTOOLS_VERSION=0.2.3
-LIBRESSL_VERSION=3.7.3
+LIBRESSL_VERSION=3.8.2
 NUT_VERSION=2.8.1
 HARD=$(shell uname -i)
 
@@ -27,7 +27,7 @@ libressl-$(LIBRESSL_VERSION): libressl-$(LIBRESSL_VERSION).tar.gz
 	tar -xf libressl-$(LIBRESSL_VERSION).tar.gz
 
 libressl-bin: libressl-$(LIBRESSL_VERSION)
-	cd libressl-$(LIBRESSL_VERSION) ; ./configure --prefix=$(CURDIR)/libressl-bin --enable-shared=no --enable-static=yes CFLAGS="-fPIC"
+	cd libressl-$(LIBRESSL_VERSION) ; ./configure --prefix=$(CURDIR)/libressl-bin --enable-shared=no --enable-static=yes CFLAGS="-fPIC" --disable-asm
 	cd libressl-$(LIBRESSL_VERSION) ; make install
 
 nut-$(NUT_VERSION).tar.gz:
