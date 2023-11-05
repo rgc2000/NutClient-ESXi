@@ -58,6 +58,7 @@ CONFIGURATION
    UserVars.NutSendMail       : Set to 1 if you want a mail to be sent
                                 on UPS events.
    UserVars.NutMailTo         : Email address to send mail to on UPS events.
+   UserVars.NutSmtpRelay      : Optional SMTP relay to send mail
 
 - If you don't see UserVars parameters restart hostd service on
   hypervisor only if you have no vmware job running

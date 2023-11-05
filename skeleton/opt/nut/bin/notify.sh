@@ -37,6 +37,7 @@ fi
 [ "${SEND_MAIL}" = 1 ] || exit 0
 
 # Send an email
+[ -n "${SMTP_RELAY}" ] && RELAY_OPTION="-r ${SMTP_RELAY}" || RELAY_OPTION=""
 DOMAIN="$(hostname -d)"
 FROM="$(hostname -s)@${DOMAIN}"
 FROMHEADER="${FROM} (ESXi on $(hostname -s))"
@@ -53,6 +54,6 @@ DATE_SMTP="`date --rfc-2822`"
   echo ""
   echo "$DATE - UPS event on ${HOSTNAME} : ${MESSAGE}"
 ) | \
-/opt/nut/bin/smtpblast -f "${FROM}" -t "${TO}"
+/opt/nut/bin/smtpblast -f "${FROM}" -t "${TO}" ${RELAY_OPTION}
 
 exit 0

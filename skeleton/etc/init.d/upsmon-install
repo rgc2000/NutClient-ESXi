@@ -70,6 +70,7 @@ upsmon_install() {
    add_advcfg_string NutUser 'NUT username to connect to remote ups' upsuser
    add_advcfg_string NutPassword 'NUT password to connect to remote ups' upspassword
    add_advcfg_string NutMailTo 'NUT send mail notification to this address' root@domain
+   add_advcfg_string NutSmtpRelay 'NUT optional smtp relay to send mail notifications' ''
    add_advcfg_int NutFinalDelay 'NUT seconds to wait after low battery event before shutting down' 0 3600 5
    add_advcfg_int NutSendMail 'NUT send mail notification (1=yes 0=no)' 0 1 0
    add_advcfg_int NutMinSupplies 'NUT number of power supplies needed to keep this system running' 1 10 1
@@ -81,6 +82,7 @@ upsmon_remove() {
    del_advcfg NutUser
    del_advcfg NutPassword
    del_advcfg NutMailTo
+   del_advcfg NutSmtpRelay
    del_advcfg NutFinalDelay
    del_advcfg NutSendMail
    del_advcfg NutMinSupplies

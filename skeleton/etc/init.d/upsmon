@@ -25,6 +25,7 @@ create_config() {
    UPS_FINALDELAY="$(esxcfg-advcfg -q -g /UserVars/NutFinalDelay)"
    UPS_SENDMAIL="$(esxcfg-advcfg -q -g /UserVars/NutSendMail)"
    UPS_MAILTO="$(esxcfg-advcfg -q -g /UserVars/NutMailTo)"
+   UPS_SMTPRELAY="$(esxcfg-advcfg -q -g /UserVars/NutSmtpRelay)"
    UPS_MINSUPPLIES="$(esxcfg-advcfg -q -g /UserVars/NutMinSupplies)"
    UPS_ONBATTDELAY="$(esxcfg-advcfg -q -g /UserVars/NutOnBatteryDelay)"
 
@@ -40,6 +41,7 @@ create_config() {
 
    sed -e "s/@UPS_SENDMAIL@/$UPS_SENDMAIL/g" \
        -e "s/@UPS_MAILTO@/$UPS_MAILTO/g" \
+       -e "s/@UPS_SMTPRELAY@/$UPS_SMTPRELAY/g" \
        -e "s/@UPS_ONBATTDELAY@/$UPS_ONBATTDELAY/g" \
        -e "s/@UPS_NAME@/$UPS_NAME/g" \
        -e "s/@UPS_MINSUPPLIES@/$UPS_MINSUPPLIES/g" \
