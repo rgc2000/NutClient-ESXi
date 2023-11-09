@@ -25,6 +25,7 @@ libressl-$(LIBRESSL_VERSION).tar.gz:
 
 libressl-$(LIBRESSL_VERSION): libressl-$(LIBRESSL_VERSION).tar.gz
 	tar -xf libressl-$(LIBRESSL_VERSION).tar.gz
+	#cd libressl-$(LIBRESSL_VERSION); for i in $(CURDIR)/patches/libressl-$(LIBRESSL_VERSION)-*.patch ; do patch -p1 < $$i ; done
 
 libressl-bin: libressl-$(LIBRESSL_VERSION)
 	cd libressl-$(LIBRESSL_VERSION) ; ./configure --prefix=$(CURDIR)/libressl-bin --enable-shared=no --enable-static=yes CFLAGS="-fPIC" --disable-asm
@@ -35,7 +36,7 @@ nut-$(NUT_VERSION).tar.gz:
 
 nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	tar -xf nut-$(NUT_VERSION).tar.gz
-	cd nut-$(NUT_VERSION); patch -p1 < $(CURDIR)/patches/nut-$(NUT_VERSION)-esxi.patch
+	cd nut-$(NUT_VERSION); for i in $(CURDIR)/patches/nut-$(NUT_VERSION)-*.patch ; do patch -p1 < $$i ; done
 
 nut-bin: nut-$(NUT_VERSION) libressl-bin
 	cd nut-$(NUT_VERSION); touch .git; ./configure --prefix=/opt/nut --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl --with-openssl-includes="-I$(CURDIR)/libressl-bin/include" --with-openssl-libs="-L$(CURDIR)/libressl-bin/lib -lssl -lcrypto" LDFLAGS="-lrt -lpthread"
@@ -46,8 +47,7 @@ smtptools-$(SMTPTOOLS_VERSION).tar.gz:
 
 smtptools-$(SMTPTOOLS_VERSION): smtptools-$(SMTPTOOLS_VERSION).tar.gz
 	tar -xf smtptools-$(SMTPTOOLS_VERSION).tar.gz
-	cd smtptools-$(SMTPTOOLS_VERSION); patch -p1 < $(CURDIR)/patches/smtptools-0.2.3-autotools.patch
-	cd smtptools-$(SMTPTOOLS_VERSION); patch -p1 < $(CURDIR)/patches/smtptools-0.2.3-cleanups.patch
+	cd smtptools-$(SMTPTOOLS_VERSION);  for i in $(CURDIR)/patches/smtptools-$(SMTPTOOLS_VERSION)-*.patch ; do patch -p1 < $$i ; done
 
 smtptools-bin: smtptools-$(SMTPTOOLS_VERSION)
 	cd smtptools-$(SMTPTOOLS_VERSION); LDFLAGS="-lresolv" ./configure --prefix=/opt/nut
