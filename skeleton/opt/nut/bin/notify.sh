@@ -34,7 +34,7 @@ then
 fi
 
 # End here if no mail to send
-[ "${SEND_MAIL}" = 1 ] || exit 0
+[ "${SEND_MAIL}" = 0 ] && exit 0
 
 # Send an email
 [ -n "${SMTP_RELAY}" ] && RELAY_OPTION="-r ${SMTP_RELAY}" || RELAY_OPTION=""
@@ -53,6 +53,13 @@ DATE_SMTP="`date --rfc-2822`"
   echo "Subject: UPS Notification ${NOTIFYTYPE}"
   echo ""
   echo "$DATE - UPS event on ${HOSTNAME} : ${MESSAGE}"
+  if [ "${SEND_MAIL}" -gt 1 ]; then
+    for UPS in ${UPS_LIST}; do
+      echo ""
+      echo "=======  UPS: ${UPS}  ======="
+      /opt/nut/bin/upsc ${UPS}
+    done
+  fi
 ) | \
 /opt/nut/bin/smtpblast -f "${FROM}" -t "${TO}" ${RELAY_OPTION}
 

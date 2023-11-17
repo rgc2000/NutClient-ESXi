@@ -36,7 +36,16 @@ add_advcfg_string() {
          NUT_log "Failed to create string advcfg $1"
       fi
    else
-      NUT_log "Using existing string advcfg $1"
+      DESC="$(esxcfg-advcfg -l | grep "/UserVars/$1" | cut -d: -f2- | sed -e 's/^ //')"
+      if [ "${DESC}" != "$2" ]
+      then
+         NUT_log "Upgrading existing string advcfg $1 and keeping value"
+         VALUE="$(esxcfg-advcfg -q -g "/UserVars/$1")"
+         esxcfg-advcfg -L "$1" && esxcfg-advcfg -A "$1" -T string -E "$2" -F "$3"
+         esxcfg-advcfg -q -s "${VALUE}" "/UserVars/$1"
+      else
+         NUT_log "Using existing string advcfg $1"
+      fi
    fi
 }
 
@@ -57,7 +66,16 @@ add_advcfg_int() {
          NUT_log "Failed to create int advcfg $1"
       fi
    else
-      NUT_log "Using existing int advcfg $1"
+      DESC="$(esxcfg-advcfg -l | grep "/UserVars/$1" | cut -d: -f2- | sed -e 's/^ //')"
+      if [ "${DESC}" != "$2" ]
+      then 
+         NUT_log "Upgrading existing int advcfg $1 and keeping value"
+         VALUE="$(esxcfg-advcfg -q -g "/UserVars/$1")"
+         esxcfg-advcfg -L "$1" && esxcfg-advcfg -A "$1" -T int -E "$2" -N "$3" -M "$4" -F "$5"
+         esxcfg-advcfg -q -s "${VALUE}" "/UserVars/$1"
+      else
+         NUT_log "Using existing int advcfg $1"
+      fi
    fi
 } 
 
@@ -72,7 +90,7 @@ upsmon_install() {
    add_advcfg_string NutMailTo 'NUT send mail notification to this address' root@domain
    add_advcfg_string NutSmtpRelay 'NUT optional smtp relay to send mail notifications' ''
    add_advcfg_int NutFinalDelay 'NUT seconds to wait after low battery event before shutting down' 0 3600 5
-   add_advcfg_int NutSendMail 'NUT send mail notification (1=yes 0=no)' 0 1 0
+   add_advcfg_int NutSendMail 'NUT send mail notification (0=no 1=yes 2=verbose)' 0 2 0
    add_advcfg_int NutMinSupplies 'NUT number of power supplies needed to keep this system running' 1 10 1
    add_advcfg_int NutOnBatteryDelay 'NUT seconds to run on battery before shutting down (0=wait for low battery event)' 0 86400 0
 }

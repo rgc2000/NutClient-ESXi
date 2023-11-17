@@ -12,7 +12,7 @@ EsxHostAdvSettings.UserVars.NutSmtpRelay.summary = "NUT relais SMTP facultatif 
 EsxHostAdvSettings.UserVars.NutFinalDelay.label = "NUT secondes après l'évènement batterie faible avant extinction"
 EsxHostAdvSettings.UserVars.NutFinalDelay.summary = "NUT secondes après l'évènement batterie faible avant de lancer l'extinction de l'hôte ESXi"
 EsxHostAdvSettings.UserVars.NutSendMail.label = "NUT activer l'envoi d'emails de notification"
-EsxHostAdvSettings.UserVars.NutSendMail.summary = "NUT activer l'envoi d'emails de notification (1=oui 0=non)"
+EsxHostAdvSettings.UserVars.NutSendMail.summary = "NUT activer l'envoi d'emails de notification (0=non 1=oui 2=détaillé)"
 EsxHostAdvSettings.UserVars.NutMinSupplies.label = "NUT nombre d'onduleurs minimum"
 EsxHostAdvSettings.UserVars.NutMinSupplies.summary = "NUT nombre d'onduleurs minimum nécessaires pour garder ce systeme sous tension"
 EsxHostAdvSettings.UserVars.NutOnBatteryDelay.label = "NUT secondes sur batterie avant extinction"

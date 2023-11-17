@@ -12,7 +12,7 @@ EsxHostAdvSettings.UserVars.NutSmtpRelay.summary = "NUT optional SMTP relay to 
 EsxHostAdvSettings.UserVars.NutFinalDelay.label = "NUT seconds after low battery before shutting down"
 EsxHostAdvSettings.UserVars.NutFinalDelay.summary = "NUT seconds to wait after low battery event before shutting down"
 EsxHostAdvSettings.UserVars.NutSendMail.label = "NUT enable send mail notification"
-EsxHostAdvSettings.UserVars.NutSendMail.summary = "NUT send mail notification (1=yes 0=no)"
+EsxHostAdvSettings.UserVars.NutSendMail.summary = "NUT send mail notification (0=no 1=yes 2=verbose)"
 EsxHostAdvSettings.UserVars.NutMinSupplies.label = "NUT number of power supplies"
 EsxHostAdvSettings.UserVars.NutMinSupplies.summary = "NUT number of power supplies needed to keep this system running"
 EsxHostAdvSettings.UserVars.NutOnBatteryDelay.label = "NUT seconds on battery before shutting down"

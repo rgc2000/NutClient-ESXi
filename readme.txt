@@ -2,7 +2,7 @@ Network UPS Tools client for VMWare ESXi 5.0-8.0
 ------------------------------------------------
 
 Author : Rene Garcia
-Date   : 01-10-2022
+Date   : 01-11-2023
 Release: 2.5.0
 Licence: GPLv3
 
@@ -37,16 +37,16 @@ UNINSTALL
 
 CONFIGURATION
 
-- Start vSphere Client and go to configuration tab of the hypervisor
-- Open Advanced Parameters and go to UserVars
+- Open ESXi UI web interface and log in. In 'navigator', select 'Manage' item in 'Host'
+- In 'System' tab select 'Advanced Settings' and you can filter with "UserVars.Nut"
 - Configure these parameters to match your needs :
    UserVars.NutUpsName        : UPS name on remote NUT server
                                 (ups_name@server_name), can be a space
                                 separated list of NUT servers.
    UserVars.NutUser           : Username to connect to NUT server.
-                                If more that one NUT server is declared,
-                                all need to use the same user/password
-   UserVars.NutPassword       : Username password on NUT server.
+                                If you are using more than one NUT server,
+                                they all need to accept the same user/password.
+   UserVars.NutPassword       : User password on NUT server.
    UserVars.NutFinalDelay     : Seconds to wait on low battery event
                                 before shutting down.
    UserVars.NutOnBatteryDelay : Seconds to wait running on battery
@@ -56,22 +56,24 @@ CONFIGURATION
    UserVars.NutMinSupplies    : Number of power supplies needed to keep
                                 the system running.
    UserVars.NutSendMail       : Set to 1 if you want a mail to be sent
-                                on UPS events.
+                                on UPS events. Set to 2 for a more detailled
+                                mail report with all UPS status. Set to 0 for no mail
    UserVars.NutMailTo         : Email address to send mail to on UPS events.
-   UserVars.NutSmtpRelay      : Optional SMTP relay to send mail
+   UserVars.NutSmtpRelay      : Optional SMTP relay to send mail.
+                                keep it empty for no relay (the default)
 
-- If you don't see UserVars parameters restart hostd service on
+- If you don't see the UserVars parameters restart hostd service on
   hypervisor only if you have no vmware job running
     /etc/init.d/hostd restart
   You will need to reconnect with the client
 - Now you can start and enable NUT client on hypervisor boot
-- On configuration tab of the hypervisor go to Security Profile
-- Open services properties
-- Select Network UPS Tools client an click on Options
-- When you change the values of the UserVars you MUST restart NUT client service
+- On ESXi UI web interface select 'Manage' item in 'Host'. The select 'Services' tab.
+- Highlight NutClient service, in actions enable 'Start and stop with host' 
+- Start the NutClient service once configured.
+- Everytime you change a value in the UserVars you MUST restart NUT client service
   to reload the configuration.
 
-WARNINGS
+WARNING
 
 This module is provided "as is" and is not approved by VMWare, you may 
 lose VMWare support if you install it. Use it at your own risks.

@@ -12,7 +12,7 @@ EsxHostAdvSettings.UserVars.NutSmtpRelay.summary = "NUT relevo SMTP opcional pa
 EsxHostAdvSettings.UserVars.NutFinalDelay.label = "NUT segundos después del evento de batería baja antes del apagado"
 EsxHostAdvSettings.UserVars.NutFinalDelay.summary = "NUT segundos después del evento de batería baja antes de iniciar el apagado del host ESXi"
 EsxHostAdvSettings.UserVars.NutSendMail.label = "NUT activar el envío de correos de notificación"
-EsxHostAdvSettings.UserVars.NutSendMail.summary = "NUT habilitar el envío de correos electrónicos de notificación (1=sí 0=no)"
+EsxHostAdvSettings.UserVars.NutSendMail.summary = "NUT habilitar el envío de correos electrónicos de notificación (0=no 1=sí 2=detalles)"
 EsxHostAdvSettings.UserVars.NutMinSupplies.label = "NUT número mínimo de inversores"
 EsxHostAdvSettings.UserVars.NutMinSupplies.summary = "NUT número mínimo de inversores necesarios para mantener este sistema alimentado"
 EsxHostAdvSettings.UserVars.NutOnBatteryDelay.label = "NUT segundos bajo batería antes de apagar"
