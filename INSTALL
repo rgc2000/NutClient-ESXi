@@ -11,6 +11,7 @@ with yum install :
   wget
   patch
   gcc
+  gcc-c++
   zip
 
 The choice of CentOS 7 is to make the package compatible from ESXi 5 to
@@ -43,7 +44,7 @@ You will get a VIB file named upsmon-x.x.x-y.y.y.x86_64.vib depending on
 the version of this package. x.x.x is the version of NUT, y.y.y is the 
 version of this project.
 
-And also and archive called NutClient-ESXi-y.y.y.tar.gz containing the VIB
+And also an archive called NutClient-ESXi-y.y.y.tar.gz containing the VIB
 file and various files to help for installation on ESXi host
 
 An offline bundle file is also generated for direct installation from vCenter or
