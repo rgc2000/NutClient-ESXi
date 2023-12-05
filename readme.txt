@@ -9,14 +9,15 @@ Licence: GPLv3
 PURPOSE
 
 Provide UPS connectivity to a single vSphere Hypervisor 5.0 to 8.0
-Will shut down properly the host and vms with vmware-tools installed
+Will shut down properly the host and VMs with vmware-tools installed
 if a NUT server tells that the power supply has gone and the UPS
 battery level is critical.
 
 INSTALL
 
+The old way, for all ESXi versions from 5 to 8
 - Enable SSH on the hypervisor.
-- Copy via scp this TAR archive to /tmp directory of the hypervisor
+- Copy via scp this TAR archive to /tmp directory on the hypervisor
 - Connect via ssh to the hypervisor and type the followind commands
 
     cd /tmp
@@ -27,13 +28,22 @@ INSTALL
   to configure it first
 - You can delete tmp files and disable SSH on the hypervisor
 
+The modern way, for ESXi 6 and above
+- Enable SSH on the Hypervisor.
+- Copy via scp the offline bundle ZIP file to /tmp directory on host
+- Connect via ssh to the host and type the following command
+
+    esxcli software vib install -d /tmp/NutClient-ESXi-2.8.1-2.6.0-offline_bundle.zip
+
 UPDATE
 
 - Same as install but use ./upsmon-update.sh
+- Or use esxcli software vib update -d /tmp/NutClient-ESXi-2.8.1-2.6.0-offline_bundle.zip
 
 UNINSTALL
 
 - Same as install but use ./upsmon-remove.sh
+- Or use esxcli software vib remove -n upsmon
 
 CONFIGURATION
 
@@ -79,6 +89,10 @@ This module is provided "as is" and is not approved by VMWare, you may
 lose VMWare support if you install it. Use it at your own risks.
 
 REVISIONS
+
+Version notation is X.Y.Z where Z is for minor evolutions and bug fixes with no new
+features. Y is for new features and X is for major evolutions with possible break of
+ascending compatibility.
 
 1.0.0 - 26/05/2012 - internal beta release
 1.0.1 - 28/05/2012 - initial release
