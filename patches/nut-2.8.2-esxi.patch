@@ -1,6 +1,6 @@
-diff -Naur nut-2.8.1/common/common.c nut-2.8.1-esxi/common/common.c
---- nut-2.8.1/common/common.c	2023-10-30 00:02:33.000000000 +0100
-+++ nut-2.8.1-esxi/common/common.c	2023-11-01 16:24:02.249343816 +0100
+diff -Naur nut-2.8.2/common/common.c nut-2.8.2-esxi/common/common.c
+--- nut-2.8.2/common/common.c	2024-04-01 14:15:31.000000000 +0200
++++ nut-2.8.2-esxi/common/common.c	2024-04-04 14:36:26.745509646 +0200
 @@ -355,9 +355,6 @@
  		if (seteuid(0))
  			fatal_with_errno(EXIT_FAILURE, "getuid gave 0, but seteuid(0) failed");
