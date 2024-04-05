@@ -123,4 +123,4 @@ ascending compatibility.
 2.5.0 - 01/11/2023 - nut updated to version 2.8.1 - libressl 3.7.3 - UserVars description
 2.6.0 - 17/11/2023 - new SMTP relay feature for mail notifications - verbose mail option
 2.6.1 - 05/12/2023 - Fix default SMPT value to 'none' to be supported on ESXi 6.7 and previous
-2.6.2 - 04/04/2024 - nut 2.8.2, libressl 2.9.1
+2.6.2 - 04/04/2024 - nut 2.8.2, libressl 3.9.1
