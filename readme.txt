@@ -85,8 +85,11 @@ CONFIGURATION
 
 WARNING
 
-This module is provided "as is" and is not approved by VMWare, you may 
+This module is provided "as is" and is not approved by VMWare, you may
 lose VMWare support if you install it. Use it at your own risks.
+This module was designed for standalone ESXi servers. You should not use it for
+ESXi nodes in an HA cluster, otherwise the virtual machines will be abruptly stopped
+by the NUT client in the event of a power outage (no clean shutdown/standby in HA mode).
 
 REVISIONS
 
