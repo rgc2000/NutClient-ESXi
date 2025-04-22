@@ -1,5 +1,5 @@
-Network UPS Tools client for VMWare ESXi 5.0-8.0
-------------------------------------------------
+Network UPS Tools client for VMWare ESXi
+----------------------------------------
 
 Author : Rene Garcia
 Date   : 04-04-2024
@@ -15,7 +15,7 @@ battery level is critical.
 
 INSTALL
 
-The old way, for all ESXi versions from 5 to 8
+The old way, for all ESXi versions from ESXi 5.0
 - Enable SSH on the hypervisor.
 - Copy via scp this TAR archive to /tmp directory on the hypervisor
 - Connect via ssh to the hypervisor and type the followind commands
