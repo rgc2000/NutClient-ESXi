@@ -2,13 +2,13 @@ Network UPS Tools client for VMWare ESXi
 ----------------------------------------
 
 Author : Rene Garcia
-Date   : 04-04-2024
-Release: 2.6.2
+Date   : 27-04-2025
+Release: 2.7.0
 Licence: GPLv3
 
 PURPOSE
 
-Provide UPS connectivity to a single vSphere Hypervisor 5.0 to 8.0
+Provide UPS connectivity to a single vSphere Hypervisor
 Will shut down properly the host and VMs with vmware-tools installed
 if a NUT server tells that the power supply has gone and the UPS
 battery level is critical.
@@ -21,7 +21,7 @@ The old way, for all ESXi versions from ESXi 5.0
 - Connect via ssh to the hypervisor and type the followind commands
 
     cd /tmp
-    tar -xzvf NutClient-ESXi-2.8.2-2.6.2.x86_64.tar.gz
+    tar -xzvf NutClient-ESXi-2.8.3-2.7.0.x86_64.tar.gz
     ./upsmon-install.sh
 
 - No need to reboot, upsmon can be started immediatly but you need
@@ -33,12 +33,12 @@ The modern way, for ESXi 6 and above
 - Copy via scp the offline bundle ZIP file to /tmp directory on host
 - Connect via ssh to the host and type the following command
 
-    esxcli software vib install -d /tmp/NutClient-ESXi-2.8.2-2.6.2-offline_bundle.zip
+    esxcli software vib install -d /tmp/NutClient-ESXi-2.8.3-2.7.0-offline_bundle.zip
 
 UPDATE
 
 - Same as install but use ./upsmon-update.sh
-- Or use esxcli software vib update -d /tmp/NutClient-ESXi-2.8.2-2.6.2-offline_bundle.zip
+- Or use esxcli software vib update -d /tmp/NutClient-ESXi-2.8.3-2.7.0-offline_bundle.zip
 
 UNINSTALL
 
@@ -127,3 +127,4 @@ ascending compatibility.
 2.6.0 - 17/11/2023 - new SMTP relay feature for mail notifications - verbose mail option
 2.6.1 - 05/12/2023 - Fix default SMPT value to 'none' to be supported on ESXi 6.7 and previous
 2.6.2 - 04/04/2024 - nut 2.8.2, libressl 3.9.1
+2.7.0 - 27/04/2025 - nut 2.8.3, libressl 4.0.0
