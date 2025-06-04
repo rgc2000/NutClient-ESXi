@@ -16,7 +16,7 @@ SHA256="$(sha256sum -b "${TARDISK}" | cut -d' ' -f1)"
 SHAGZ1="$(gzip -dc "${TARDISK}" | sha1sum -b | cut -d' ' -f1)"
 SHAGZ256="$(gzip -dc "${TARDISK}" | sha256sum -b | cut -d' ' -f1)"
 SIZE="$(wc -c "${TARDISK}" | cut -d' ' -f1)"
-HARD="$(uname -i)"
+HARD="$(uname -m)"
 
 TIMESTAMP="$(date +"%Y-%m-%dT%H:%M:%S.%6N%:z")"
 

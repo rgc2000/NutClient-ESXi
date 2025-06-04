@@ -6,7 +6,7 @@ PROJECT_VERSION=2.7.0
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=4.1.0
 NUT_VERSION=2.8.3
-HARD=$(shell uname -i)
+HARD=$(shell uname -m)
 
 PROJECT=NutClient
 NAME=upsmon
