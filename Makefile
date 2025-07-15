@@ -16,7 +16,7 @@ VERSION=$(NUT_VERSION)-$(PROJECT_VERSION)
 VIBNAME=$(NAME)-$(VERSION).$(HARD).vib
 ARCNAME=$(PROJECT)-ESXi-$(VERSION)
 ARCHIVE=$(ARCNAME).$(HARD).tar.gz
-DEPOT=$(PROJECT)-ESXi-$(VERSION)-offline_bundle.zip
+DEPOT=$(PROJECT)-ESXi-$(VERSION)-$(HARD)-offline_bundle.zip
 
 all: $(ARCHIVE) $(DEPOT)
 
@@ -77,7 +77,7 @@ $(ARCHIVE): $(VIBNAME)
 	tar -cf - readme.txt $(NAME)-install.sh $(NAME)-remove.sh $(NAME)-update.sh $(VIBNAME) | gzip -9 > $(ARCHIVE)
 
 $(DEPOT): $(VIBNAME)
-	script/mkbundle.sh $(PROJECT) $(NAME) $(VERSION) $(VIBNAME)
+	script/mkbundle.sh $(PROJECT) $(NAME) $(VERSION) $(VIBNAME) $(HARD)
 
 archive:
 	git archive --format=tar --prefix=NutClient-ESXi-$(VERSION)-src/ $(PROJECT_VERSION) | gzip -9 > NutClient-ESXi-$(VERSION)-src.tar.gz
