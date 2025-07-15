@@ -13,6 +13,14 @@ Will shut down properly the host and VMs with vmware-tools installed
 if a NUT server tells that the power supply has gone and the UPS
 battery level is critical.
 
+There are two binary versions of this bundle depending on the target
+processor.
+- x86_64 is for 64-bit x86 intel familly processors.
+- aarch64 is for 64-bit ARM familly processors.
+
+Currently only ESXi 8 for ARM has been tested sucessfully with the aarch64
+bundle.
+
 INSTALL
 
 The old way, for all ESXi versions from ESXi 5.0
@@ -33,12 +41,12 @@ The modern way, for ESXi 6 and above
 - Copy via scp the offline bundle ZIP file to /tmp directory on host
 - Connect via ssh to the host and type the following command
 
-    esxcli software vib install -d /tmp/NutClient-ESXi-2.8.3-2.7.0-offline_bundle.zip
+    esxcli software vib install -d /tmp/NutClient-ESXi-2.8.3-2.7.0-x86_64-offline_bundle.zip
 
 UPDATE
 
 - Same as install but use ./upsmon-update.sh
-- Or use esxcli software vib update -d /tmp/NutClient-ESXi-2.8.3-2.7.0-offline_bundle.zip
+- Or use esxcli software vib update -d /tmp/NutClient-ESXi-2.8.3-2.7.0-x86_64-offline_bundle.zip
 
 UNINSTALL
 
