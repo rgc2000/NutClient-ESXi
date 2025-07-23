@@ -37,6 +37,11 @@ To compile, login as root, go to base directory and type
 Everything should be automatically compiled and configured until the
 end of the process
 
+Moreover if your are running CentOS 7 on an Intel x86 processor you
+will get files stamped with x86_64. If you are running CentOS7 on ARM
+you will get files stamped with aarch64. A known build plateform for
+the ARM target is Raspberry Pi 3 running CentOS 7.
+
 WHAT DO YOU GET
 ---------------
 
@@ -44,16 +49,17 @@ You will get a VIB file named upsmon-x.x.x-y.y.y.x86_64.vib depending on
 the version of this package. x.x.x is the version of NUT, y.y.y is the 
 version of this project.
 
-And also an archive called NutClient-ESXi-y.y.y.tar.gz containing the VIB
+And also an archive called NutClient-ESXi-y.y.y.x86_64.tar.gz containing the VIB
 file and various files to help for installation on ESXi host
 
 An offline bundle file is also generated for direct installation from vCenter or
-ESXi ISO customization with name NutClient-ESXi-x.x.x-y.y.y-offline_bundle.zip
+ESXi ISO customization with name NutClient-ESXi-x.x.x-y.y.y-x86_64-offline_bundle.zip
 (don't forget to set acceptance level to CommunitySupported for ISO)
 
 COMPATIBILITY
 -------------
 This packages has been tested on ESXi from version 5.0 to version 8.0
+aarch64 target package has only been tested on ESXi for ARM version 8.0.
 
 DISCLAMER
 ---------
