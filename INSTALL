@@ -15,7 +15,7 @@ with yum install :
   zip
 
 The choice of CentOS 7 is to make the package compatible from ESXi 5 to
-ESXi 8. Generating of 64-bit binaries is mandatory for ESXi 8 only.
+ESXi 9. Generating of 64-bit binaries is mandatory from ESXi 8 only.
 
 You will also need the original untouched source file archives for the
 following packages :
@@ -58,7 +58,7 @@ ESXi ISO customization with name NutClient-ESXi-x.x.x-y.y.y-x86_64-offline_bundl
 
 COMPATIBILITY
 -------------
-This packages has been tested on ESXi from version 5.0 to version 8.0
+This packages has been tested on ESXi from version 5.0 to version 9.0
 aarch64 target package has only been tested on ESXi for ARM version 8.0.
 
 DISCLAMER

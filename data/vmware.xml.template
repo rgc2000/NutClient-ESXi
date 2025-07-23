@@ -9,7 +9,7 @@
     <category>enhancement</category>
     <urgency>moderate</urgency>
     <releaseType>extension</releaseType>
-    <description>Network UPS Tools client for VMware ESXi 5.0-8.0</description>
+    <description>Network UPS Tools client for VMware ESXi</description>
     <kbUrl></kbUrl>
     <contact></contact>
     <componentNameSpec uiString="upsmon" name="upsmon"/>
@@ -20,6 +20,7 @@
       <softwarePlatform locale="" version="6.*" productLineID="embeddedEsx"/>
       <softwarePlatform locale="" version="7.*" productLineID="embeddedEsx"/>
       <softwarePlatform locale="" version="8.*" productLineID="embeddedEsx"/>
+      <softwarePlatform locale="" version="9.*" productLineID="embeddedEsx"/>
     </platforms>
     <vibList>
       <vib>
