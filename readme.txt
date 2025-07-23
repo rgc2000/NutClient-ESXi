@@ -136,3 +136,4 @@ ascending compatibility.
 2.6.1 - 05/12/2023 - Fix default SMPT value to 'none' to be supported on ESXi 6.7 and previous
 2.6.2 - 04/04/2024 - nut 2.8.2, libressl 3.9.1
 2.7.0 - 27/04/2025 - nut 2.8.3, libressl 4.0.0
+2.7.1 - 23/07/2025 - libressl 4.1.0 - ESXi for ARM - ESXi 9.0 support
