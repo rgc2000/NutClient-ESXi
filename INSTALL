@@ -10,6 +10,8 @@ with yum install :
 
   wget
   patch
+  file
+  make
   gcc
   gcc-c++
   zip
