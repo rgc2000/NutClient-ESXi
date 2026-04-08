@@ -5,7 +5,7 @@ PROJECT_VERSION=2.7.1
 
 SMTPTOOLS_VERSION=0.2.3
 LIBRESSL_VERSION=4.2.1
-NUT_VERSION=2.8.4
+NUT_VERSION=2.8.5
 HARD=$(shell uname -m)
 
 PROJECT=NutClient
@@ -39,7 +39,7 @@ nut-$(NUT_VERSION): nut-$(NUT_VERSION).tar.gz
 	cd nut-$(NUT_VERSION); for i in $(CURDIR)/patches/nut-$(NUT_VERSION)-*.patch ; do patch -p1 < $$i ; done
 
 nut-bin: nut-$(NUT_VERSION) libressl-bin
-	cd nut-$(NUT_VERSION); touch .git; ./configure --prefix=/opt/nut --with-pidpath=/var/run --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl --with-openssl-includes="-I$(CURDIR)/libressl-bin/include" --with-openssl-libs="-L$(CURDIR)/libressl-bin/lib -lssl -lcrypto" LDFLAGS="-lrt -lpthread"
+	cd nut-$(NUT_VERSION); touch .git; ./configure --prefix=/opt/nut --sysconfdir=/opt/nut/etc --with-pidpath=/var/run --without-cgi --without-snmp --without-wrap --without-serial --with-user=daemon --with-group=daemon --with-openssl --with-openssl-includes="-I$(CURDIR)/libressl-bin/include" --with-openssl-libs="-L$(CURDIR)/libressl-bin/lib -lssl -lcrypto" LDFLAGS="-lrt -lpthread"
 	cd nut-$(NUT_VERSION); make DESTDIR=$(CURDIR)/nut-bin install
 
 smtptools-$(SMTPTOOLS_VERSION).tar.gz:
