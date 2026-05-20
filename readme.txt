@@ -138,3 +138,4 @@ ascending compatibility.
 2.7.0 - 27/04/2025 - nut 2.8.3, libressl 4.0.0
 2.7.1 - 23/07/2025 - libressl 4.1.0 - ESXi for ARM - ESXi 9.0 support
 2.7.2 - 08/04/2026 - nut 2.8.5, libressl 4.2.1
+2.7.3 - 20/05/2026 - prevent upsmon to quit before all VMs are safely shutdown
