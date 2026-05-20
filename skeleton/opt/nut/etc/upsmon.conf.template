@@ -1,6 +1,7 @@
 # Network UPS Tools: upsmon configuration
 
 SHUTDOWNCMD "poweroff"
+SHUTDOWNEXIT false
 NOTIFYCMD "/opt/nut/bin/notify.sh"
 
 POLLFREQ 5
